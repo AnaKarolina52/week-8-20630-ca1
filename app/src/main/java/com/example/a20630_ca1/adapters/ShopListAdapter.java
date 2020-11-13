@@ -7,14 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.a20630_ca1.databinding.ShopRowBinding;
 import com.example.a20630_ca1.models.Product;
 
+
+
  public class ShopListAdapter extends ListAdapter<Product, ShopListAdapter.ShopViewHolder> {
 
-     public ShopListAdapter() {
+     ShopInterface shopInterface;
+
+     public ShopListAdapter(ShopInterface shopInterface) {
+
          super(Product.itemCallback);
+         this.shopInterface = shopInterface;
      }
 
      @NonNull
@@ -22,7 +27,7 @@ import com.example.a20630_ca1.models.Product;
      public ShopViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
          LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
          ShopRowBinding showRowBinding = ShopRowBinding.inflate(layoutInflater, parent, false);
-
+         showRowBinding.setShopInterface(shopInterface);
          return new ShopViewHolder(showRowBinding);
      }
 
@@ -40,6 +45,8 @@ import com.example.a20630_ca1.models.Product;
          public ShopViewHolder(ShopRowBinding binding){
              super(binding.getRoot());
              this.shopRowBinding = binding;
+
+
          }
 
      }

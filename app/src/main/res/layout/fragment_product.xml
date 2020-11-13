@@ -1,14 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.ProductFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="shopViewModel"
+            type="com.example.a20630_ca1.viewmodels.ShopViewModel"/>
+
+    </data>
+
+    <ScrollView
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:contex=".views.ProductDetailFragment"
+        android:layout_width="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/productNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{shopViewModel.product.name}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="4dp" />
+
+            <TextView
+                android:id="@+id/priceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(shopViewModel.product.price)+ `€` }"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tea is an aromatic beverage commonly prepared by pouring hot or boiling
+            water over cured or fresh leaves of the Camellia sinensis, an evergreen shrub native to East Asia.
+             After water, it is the most widely consumed drink in the world.[4] There are many
+             different types of tea; some, like Darjeeling and Chinese greens, have a cooling,
+             slightly bitter, and astringent flavour, while others have vastly different profiles that include sweet,
+              nutty, floral, or grassy notes. Tea has a stimulating effect in humans primarily by its caffeine content."
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <Button
+                android:id="@+id/addCartbutton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Add to cart"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
+
+        </LinearLayout>
+    </ScrollView>
+</layout>
