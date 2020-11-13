@@ -2,6 +2,8 @@ package com.example.a20630_ca1.views;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -11,18 +13,39 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.a20630_ca1.R;
+import com.example.a20630_ca1.models.CartItem;
+import com.example.a20630_ca1.viewmodels.ShopViewModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
     NavController navController;
+    ShopViewModel shopViewModel;
+
+    private int cartQuantity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this,navController);
+        NavigationUI.setupActionBarWithNavController(this, navController);
+        shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
+        shopViewModel.getCart().observe(this, new Observer<List<CartItem>>() {
+
+            @Override
+            public void onChanged(List<CartItem> cartItems) {
+                int quantity = 0;
+                for (CartItem cartItem: cartItems) {
+                    quantity += cartItem.getQuantity();
+                }
+                cartQuantity = quantity;
+                invalidateOptionsMenu();
+            }
+        });
     }
 
     @Override
