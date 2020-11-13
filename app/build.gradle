@@ -56,7 +56,7 @@ dependencies {
     //ViewModel
     def lifecycle_version= "2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedada:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
     //Navigation
     def nav_version = "2.3.0"
