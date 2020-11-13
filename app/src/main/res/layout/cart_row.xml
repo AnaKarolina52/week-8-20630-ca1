@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cartItem"
-            type="com.example.shoppingcart.models.CartItem" />
+            type="com.example.a20630_ca1.models.CartItem" />
 
     </data>
 

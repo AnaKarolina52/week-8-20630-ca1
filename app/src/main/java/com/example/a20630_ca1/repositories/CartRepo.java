@@ -33,7 +33,7 @@ public class CartRepo {
         List<CartItem> cartItemList = new ArrayList<>(mutableCart.getValue());
         for (CartItem cartItem: cartItemList) {
             if (cartItem.getProduct().getId().equals(product.getId())) {
-                if (cartItem.getQuantity() == 5) {
+                if (cartItem.getQuantity() == 10) {
                     return false;
                 }
 
