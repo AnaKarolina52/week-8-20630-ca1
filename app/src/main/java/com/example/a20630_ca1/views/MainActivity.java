@@ -11,6 +11,8 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.a20630_ca1.R;
 import com.example.a20630_ca1.models.CartItem;
@@ -57,6 +59,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.cartFragment);
+        View actionView = menuItem.getActionView();
+
+        TextView cartBadgeTextVIew = actionView.findViewById(R.id.cart_badge_text_view);
+
+
+        cartBadgeTextVIew.setText(String.valueOf(cartQuantity));
+        cartBadgeTextVIew.setVisibility(cartQuantity== 0 ? View.GONE : View.VISIBLE);
+
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
         return true;
     }
 
