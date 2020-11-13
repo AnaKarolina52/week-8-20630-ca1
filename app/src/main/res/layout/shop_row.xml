@@ -43,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Add to card"
+            android:onClick="@{() -> shopInterface.addItem(product)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
             style="@style/Widget.MaterialComponents.Button.TextButton" />
         />
