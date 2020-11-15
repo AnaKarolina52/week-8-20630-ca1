@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.a20630_ca1.R;
-import com.example.a20630_ca1.models.CartItem;
+import com.example.a20630_ca1.models.SelectedTea;
 import com.example.a20630_ca1.viewmodels.ShopViewModel;
 
 import java.util.List;
@@ -36,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController);
         shopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
-        shopViewModel.getCart().observe(this, new Observer<List<CartItem>>() {
+        shopViewModel.getCart().observe(this, new Observer<List<SelectedTea>>() {
 
             @Override
-            public void onChanged(List<CartItem> cartItems) {
+            public void onChanged(List<SelectedTea> selectedTeas) {
                 int quantity = 0;
-                for (CartItem cartItem: cartItems) {
-                    quantity += cartItem.getQuantity();
+                for (SelectedTea selectedTea : selectedTeas) {
+                    quantity += selectedTea.getQuantity();
                 }
                 cartQuantity = quantity;
                 invalidateOptionsMenu();

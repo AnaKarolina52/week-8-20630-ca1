@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import com.example.a20630_ca1.R;
 import com.example.a20630_ca1.adapters.CartListAdapter;
 import com.example.a20630_ca1.databinding.FragmentCartBinding;
-import com.example.a20630_ca1.models.CartItem;
+import com.example.a20630_ca1.models.SelectedTea;
 import com.example.a20630_ca1.viewmodels.ShopViewModel;
 
 import java.util.List;
@@ -55,11 +55,11 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
         fragmentCartBinding.cartRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
 
         shopViewModel = new ViewModelProvider(requireActivity()).get(ShopViewModel.class);
-        shopViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<List<CartItem>>() {
+        shopViewModel.getCart().observe(getViewLifecycleOwner(), new Observer<List<SelectedTea>>() {
             @Override
-            public void onChanged(List<CartItem> cartItems) {
-                cartListAdapter.submitList(cartItems);
-                fragmentCartBinding.placeOrderButton.setEnabled(cartItems.size() > 0);
+            public void onChanged(List<SelectedTea> selectedTeas) {
+                cartListAdapter.submitList(selectedTeas);
+                fragmentCartBinding.placeOrderButton.setEnabled(selectedTeas.size() > 0);
             }
         });
 
@@ -80,12 +80,12 @@ public class CartFragment extends Fragment implements CartListAdapter.CartInterf
     }
 
     @Override
-    public void deleteItem(CartItem cartItem) {
-        shopViewModel.removeItemFromCart(cartItem);
+    public void deleteItem(SelectedTea selectedTea) {
+        shopViewModel.removeItemFromCart(selectedTea);
     }
 
     @Override
-    public void changeQuantity(CartItem cartItem, int quantity) {
-        shopViewModel.changeQuantity(cartItem, quantity);
+    public void changeQuantity(SelectedTea selectedTea, int quantity) {
+        shopViewModel.changeQuantity(selectedTea, quantity);
     }
 }

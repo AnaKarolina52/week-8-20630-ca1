@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a20630_ca1.databinding.CartRowBinding;
-import com.example.a20630_ca1.models.CartItem;
+import com.example.a20630_ca1.models.SelectedTea;
 
-public class CartListAdapter extends ListAdapter<CartItem, CartListAdapter.CartVH> {
+public class CartListAdapter extends ListAdapter<SelectedTea, CartListAdapter.CartVH> {
 
     private CartInterface cartInterface;
     public CartListAdapter(CartInterface cartInterface) {
-        super(CartItem.itemCallback);
+        super(SelectedTea.itemCallback);
         this.cartInterface = cartInterface;
     }
 
@@ -68,7 +68,7 @@ public class CartListAdapter extends ListAdapter<CartItem, CartListAdapter.CartV
     }
 
     public interface CartInterface {
-        void deleteItem(CartItem cartItem);
-        void changeQuantity(CartItem cartItem, int quantity);
+        void deleteItem(SelectedTea selectedTea);
+        void changeQuantity(SelectedTea selectedTea, int quantity);
     }
 }

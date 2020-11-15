@@ -21,7 +21,7 @@ public class ShopRepo {
         return mutableProductList;
     }
     private void loadProducts(){
-        List<Product> productList= new ArrayList<>();
+        List<Product> productList = new ArrayList<>();
         productList.add(new Product(UUID.randomUUID().toString(), "Darjelling", 0,8.5));
         productList.add(new Product(UUID.randomUUID().toString(), "Assam", 0,7.50));
         productList.add(new Product(UUID.randomUUID().toString(), "Lapsang", 0,9.50));

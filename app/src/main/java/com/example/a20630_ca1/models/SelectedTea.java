@@ -6,14 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 
-import java.util.Objects;
-
-public class CartItem {
+public class SelectedTea {
 
     private Product product;
     private int quantity;
 
-    public CartItem(Product product, int quantity) {
+    public SelectedTea(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -46,9 +44,9 @@ public class CartItem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CartItem cartItem = (CartItem) o;
-        return getQuantity() == cartItem.getQuantity() &&
-                getProduct().equals(cartItem.getProduct());
+        SelectedTea selectedTea = (SelectedTea) o;
+        return getQuantity() == selectedTea.getQuantity() &&
+                getProduct().equals(selectedTea.getProduct());
     }
 
     @BindingAdapter("android:setVal")
@@ -56,14 +54,14 @@ public class CartItem {
         spinner.setSelection(quantity - 1, true);
     }
 
-    public static DiffUtil.ItemCallback<CartItem> itemCallback = new DiffUtil.ItemCallback<CartItem>() {
+    public static DiffUtil.ItemCallback<SelectedTea> itemCallback = new DiffUtil.ItemCallback<SelectedTea>() {
         @Override
-        public boolean areItemsTheSame(@NonNull CartItem oldItem, @NonNull CartItem newItem) {
+        public boolean areItemsTheSame(@NonNull SelectedTea oldItem, @NonNull SelectedTea newItem) {
             return oldItem.getQuantity() == newItem.getQuantity();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull CartItem oldItem, @NonNull CartItem newItem) {
+        public boolean areContentsTheSame(@NonNull SelectedTea oldItem, @NonNull SelectedTea newItem) {
             return oldItem.equals(newItem);
         }
     };

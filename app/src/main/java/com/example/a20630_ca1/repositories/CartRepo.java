@@ -3,18 +3,18 @@ package com.example.a20630_ca1.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.a20630_ca1.models.CartItem;
 import com.example.a20630_ca1.models.Product;
+import com.example.a20630_ca1.models.SelectedTea;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartRepo {
 
-    private MutableLiveData<List<CartItem>> mutableCart = new MutableLiveData<>();
+    private MutableLiveData<List<SelectedTea>> mutableCart = new MutableLiveData<>();
     private MutableLiveData<Double> mutableTotalPrice = new MutableLiveData<>();
 
-    public LiveData<List<CartItem>> getCart() {
+    public LiveData<List<SelectedTea>> getCart() {
         if (mutableCart.getValue() == null) {
             initCart();
         }
@@ -22,7 +22,7 @@ public class CartRepo {
     }
 
     public void initCart() {
-        mutableCart.setValue(new ArrayList<CartItem>());
+        mutableCart.setValue(new ArrayList<SelectedTea>());
         calculateCartTotal();
     }
 
@@ -30,57 +30,57 @@ public class CartRepo {
         if (mutableCart.getValue() == null) {
             initCart();
         }
-        List<CartItem> cartItemList = new ArrayList<>(mutableCart.getValue());
-        for (CartItem cartItem: cartItemList) {
-            if (cartItem.getProduct().getId().equals(product.getId())) {
-                if (cartItem.getQuantity() == 10) {
+        List<SelectedTea> selectedTeaList = new ArrayList<>(mutableCart.getValue());
+        for (SelectedTea selectedTea : selectedTeaList) {
+            if (selectedTea.getProduct().getId().equals(product.getId())) {
+                if (selectedTea.getQuantity() == 10) {
                     return false;
                 }
 
-                int index = cartItemList.indexOf(cartItem);
-                cartItem.setQuantity(cartItem.getQuantity() + 1);
-                cartItemList.set(index, cartItem);
+                int index = selectedTeaList.indexOf(selectedTea);
+                selectedTea.setQuantity(selectedTea.getQuantity() + 1);
+                selectedTeaList.set(index, selectedTea);
 
-                mutableCart.setValue(cartItemList);
+                mutableCart.setValue(selectedTeaList);
                 calculateCartTotal();
                 return true;
             }
         }
-        CartItem cartItem = new CartItem(product, 1);
-        cartItemList.add(cartItem);
-        mutableCart.setValue(cartItemList);
+        SelectedTea selectedTea = new SelectedTea(product, 1);
+        selectedTeaList.add(selectedTea);
+        mutableCart.setValue(selectedTeaList);
         calculateCartTotal();
         return true;
     }
 
-    public void removeItemFromCart(CartItem cartItem) {
+    public void removeItemFromCart(SelectedTea selectedTea) {
         if (mutableCart.getValue() == null) {
             return;
         }
-        List<CartItem> cartItemList = new ArrayList<>(mutableCart.getValue());
-        cartItemList.remove(cartItem);
-        mutableCart.setValue(cartItemList);
+        List<SelectedTea> selectedTeaList = new ArrayList<>(mutableCart.getValue());
+        selectedTeaList.remove(selectedTea);
+        mutableCart.setValue(selectedTeaList);
         calculateCartTotal();
     }
 
-    public  void changeQuantity(CartItem cartItem, int quantity) {
+    public  void changeQuantity(SelectedTea selectedTea, int quantity) {
         if (mutableCart.getValue() == null) return;
 
-        List<CartItem> cartItemList = new ArrayList<>(mutableCart.getValue());
+        List<SelectedTea> selectedTeaList = new ArrayList<>(mutableCart.getValue());
 
-        CartItem updatedItem = new CartItem(cartItem.getProduct(), quantity);
-        cartItemList.set(cartItemList.indexOf(cartItem), updatedItem);
+        SelectedTea updatedItem = new SelectedTea(selectedTea.getProduct(), quantity);
+        selectedTeaList.set(selectedTeaList.indexOf(selectedTea), updatedItem);
 
-        mutableCart.setValue(cartItemList);
+        mutableCart.setValue(selectedTeaList);
         calculateCartTotal();
     }
 
     private void calculateCartTotal() {
         if (mutableCart.getValue() == null) return;
         double total = 0.0;
-        List<CartItem> cartItemList = mutableCart.getValue();
-        for (CartItem cartItem: cartItemList) {
-            total += cartItem.getProduct().getPrice() * cartItem.getQuantity();
+        List<SelectedTea> selectedTeaList = mutableCart.getValue();
+        for (SelectedTea selectedTea : selectedTeaList) {
+            total += selectedTea.getProduct().getPrice() * selectedTea.getQuantity();
         }
         mutableTotalPrice.setValue(total);
     }

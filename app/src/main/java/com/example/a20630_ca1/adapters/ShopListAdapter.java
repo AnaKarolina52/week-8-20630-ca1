@@ -1,18 +1,15 @@
 package com.example.a20630_ca1.adapters;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.a20630_ca1.databinding.ShopRowBinding;
 import com.example.a20630_ca1.models.Product;
 
 
-
- public class ShopListAdapter extends ListAdapter<Product, ShopListAdapter.ShopViewHolder> {
+public class ShopListAdapter extends ListAdapter<Product, ShopListAdapter.ShopViewHolder> {
 
      ShopInterface shopInterface;
 
