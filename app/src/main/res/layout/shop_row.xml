@@ -32,7 +32,7 @@
             android:id="@+id/priceTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(product.price)+` £`}"
+            android:text="@{String.valueOf(product.price)+` €`}"
             android:layout_gravity="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Caption" />
 

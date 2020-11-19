@@ -78,11 +78,20 @@ public class CartRepo {
     private void calculateCartTotal() {
         if (mutableCart.getValue() == null) return;
         double total = 0.0;
+        double totalincd = 0.00;
+        double delivery = 5.00;
+        int quantityItems = 0;
         List<SelectedTea> selectedTeaList = mutableCart.getValue();
         for (SelectedTea selectedTea : selectedTeaList) {
             total += selectedTea.getProduct().getPrice() * selectedTea.getQuantity();
         }
-        mutableTotalPrice.setValue(total);
+        quantityItems = selectedTeaList.size();
+        System.out.println(quantityItems);
+        if (quantityItems > 5)
+            totalincd = total + delivery;
+        else
+            totalincd = total + 0;
+        mutableTotalPrice.setValue(totalincd);
     }
 
     public LiveData<Double> getTotalPrice() {
